@@ -18,13 +18,17 @@ class remi::rpm_gpg_key (
   $ensure = present,
   $path   = '/etc/pki/rpm-gpg/RPM-GPG-KEY-remi',
 ){
+  $source = $::facts['os']['release']['major'] ? {
+    '7' => 'puppet:///modules/remi/RPM-GPG-KEY-remi',
+    '8' => 'puppet:///modules/remi/RPM-GPG-KEY-remi.el8',
+  }
 
   file { $path:
     ensure => $ensure,
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
-    source => 'puppet:///modules/remi/RPM-GPG-KEY-remi',
+    source => $source,
     before => Exec['import-remi'],
   }
 
