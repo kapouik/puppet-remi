@@ -1,4 +1,11 @@
 # Changelog
+## [v2.0.0](https://github.com/kapouik/puppet-remi/compare/v1.11.0...v2.0.0) (2021-07-09)
+
+* Update pdk to 2.1.0
+* Support for centos 8
+* Drop support for centos 6
+* Support for PHP 7.4 and 8.0
+* Support Puppet 7.x and stdlib 7.x
 
 ## [v1.11.0](https://github.com/hfm/puppet-remi/compare/v1.10.0...v1.11.0) (2018-10-18)
 

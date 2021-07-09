@@ -2,6 +2,6 @@ fixtures:
   forge_modules:
     stdlib: "puppetlabs/stdlib"
     yumrepo_core: "puppetlabs/yumrepo_core"
-    epel: "stahnma/epel"
+    epel: "puppet/epel"
   symlinks:
     remi: "#{source_dir}"

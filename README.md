@@ -1,7 +1,7 @@
 # puppet-remi
 
-[![Build Status](https://img.shields.io/travis/hfm/puppet-remi/master.svg?style=flat-square)](https://travis-ci.org/hfm/puppet-remi)
-[![Puppet Forge](https://img.shields.io/puppetforge/v/hfm/remi.svg?style=flat-square)](https://forge.puppet.com/hfm/remi)
+[![Build Status](https://img.shields.io/travis/kapouik/puppet-remi/master.svg?style=flat-square)](https://travis-ci.org/kapouik/puppet-remi)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/kapouik/remi.svg?style=flat-square)](https://forge.puppet.com/kapouik/remi)
 
 #### Table of Contents
 
@@ -15,7 +15,9 @@
 
 ## Description
 
-This module configure [Remi's RPM repository](http://rpms.famillecollet.com/) and import RPM-GPG-KEY-remi.
+This module configure [Remi's RPM repository](http://rpms.famillecollet.com/) and import the RPM GPG key file.
+
+It is a fork of [hfm module](https://github.com/hfm/puppet-remi) that do not look like to be update anymore.
 
 ## Setup
 
@@ -34,7 +36,7 @@ include remi
 ```puppet
 class { 'remi':
   remi_safe_enabled  => 1,
-  remi_php71_enabled => 1,
+  remi_php74_enabled => 1,
 }
 ```
 
@@ -43,7 +45,7 @@ class { 'remi':
 ```yaml
 ---
 remi::remi_safe_enabled: 1
-remi::remi_php71_enabled: 1
+remi::remi_php74_enabled: 1
 ```
 
 ## Reference

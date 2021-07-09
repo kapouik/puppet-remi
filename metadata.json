@@ -1,24 +1,24 @@
 {
-  "name": "hfm-remi",
-  "version": "1.11.0",
-  "author": "hfm",
+  "name": "kapouik-remi",
+  "version": "2.0.0",
+  "author": "kapouik",
   "summary": "Configure the remi repository and import the GPG keys.",
   "license": "MIT",
-  "source": "https://github.com/hfm/puppet-remi",
-  "project_page": "https://github.com/hfm/puppet-remi",
-  "issues_url": "https://github.com/hfm/puppet-remi/issues",
+  "source": "https://github.com/kapouik/puppet-remi",
+  "project_page": "https://github.com/kapouik/puppet-remi",
+  "issues_url": "https://github.com/kapouik/puppet-remi/issues",
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 3.0.0 < 6.0.0"
+      "version_requirement": ">= 5.0.0 < 8.0.0"
     },
     {
       "name": "puppetlabs/yumrepo_core",
       "version_requirement": ">= 1.0.0 < 2.0.0"
     },
     {
-      "name": "stahnma/epel",
-      "version_requirement": ">= 1.0.0 < 2.0.0"
+      "name": "puppet/epel",
+      "version_requirement": ">= 3.0.0 < 4.0.0"
     }
   ],
   "operatingsystem_support": [
