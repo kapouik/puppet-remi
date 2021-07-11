@@ -6,6 +6,7 @@
 * Drop support for centos 6
 * Support for PHP 7.4 and 8.0
 * Support Puppet 7.x and stdlib 7.x
+* Better rspec validation test
 
 ## [v1.11.0](https://github.com/hfm/puppet-remi/compare/v1.10.0...v1.11.0) (2018-10-18)
 
