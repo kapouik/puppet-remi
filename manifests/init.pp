@@ -9,9 +9,6 @@
 # * `ensure`
 # Whether Remi's repositories and the RPM-GPG-KEY-remi file should exist.
 #
-# * `path`
-# The path to the RPM-GPG-KEY-remi file to manage. Must be an absolute path.
-#
 # Examples
 # --------
 #
@@ -23,7 +20,6 @@
 #
 class remi (
   $ensure                                = present,
-  $path                                  = '/etc/pki/rpm-gpg/RPM-GPG-KEY-remi',
   $use_epel                              = true,
   $proxy                                 = absent,
   $proxy_password                        = absent,
@@ -253,7 +249,6 @@ class remi (
   if ($::facts['os']['family'] == 'RedHat' and $::facts['os']['name'] !~ /Fedora|Amazon/) {
     class { 'remi::rpm_gpg_key':
       ensure => $ensure,
-      path   => $path,
     }
 
     $gpgkey = $::facts['os']['release']['major'] ? {

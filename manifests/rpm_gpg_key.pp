@@ -16,26 +16,25 @@
 #
 class remi::rpm_gpg_key (
   $ensure = present,
-  $path   = '/etc/pki/rpm-gpg/RPM-GPG-KEY-remi',
 ){
   $source = $::facts['os']['release']['major'] ? {
-    '7' => 'puppet:///modules/remi/RPM-GPG-KEY-remi',
-    '8' => 'puppet:///modules/remi/RPM-GPG-KEY-remi.el8',
+    '7' => 'RPM-GPG-KEY-remi',
+    '8' => 'RPM-GPG-KEY-remi.el8',
   }
 
-  file { $path:
+  file { "/etc/pki/rpm-gpg/${source}":
     ensure => $ensure,
     owner  => 'root',
     group  => 'root',
     mode   => '0644',
-    source => $source,
+    source => "puppet:///modules/remi/${source}",
     before => Exec['import-remi'],
   }
 
   exec { 'import-remi':
-    command => "rpm --import ${path}",
+    command => "rpm --import /etc/pki/rpm-gpg/${source}",
     path    => ['/bin', '/usr/bin'],
-    unless  => "rpm -q gpg-pubkey-$(gpg --throw-keyids ${path} | grep pub | cut -c 12-19 | tr '[A-Z]' '[a-z]')",
+    unless  => "rpm -q gpg-pubkey-$(gpg --throw-keyids /etc/pki/rpm-gpg/${source} | grep pub | cut -c 12-19 | tr '[A-Z]' '[a-z]')",
   }
 
 }
