@@ -27,6 +27,8 @@ describe 'remi::rpm_gpg_key' do
       context 'with absent' do
         let(:params) { { ensure: 'absent' } }
 
+        it { is_expected.to compile }
+
         case facts[:operatingsystemmajrelease]
         when '7'
           it { is_expected.to contain_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-remi').with_ensure('absent') }
