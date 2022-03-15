@@ -1,6 +1,6 @@
 {
   "name": "kapouik-remi",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": "kapouik",
   "summary": "Configure the remi repository and import the GPG keys.",
   "license": "MIT",
@@ -10,7 +10,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 5.0.0 < 8.0.0"
+      "version_requirement": ">= 5.0.0 < 9.0.0"
     },
     {
       "name": "puppetlabs/yumrepo_core",
@@ -18,7 +18,7 @@
     },
     {
       "name": "puppet/epel",
-      "version_requirement": ">= 3.0.0 < 4.0.0"
+      "version_requirement": ">= 3.0.0 < 5.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -55,7 +55,7 @@
     "repository",
     "php"
   ],
-  "pdk-version": "2.1.1",
-  "template-url": "pdk-default#2.1.1",
-  "template-ref": "tags/2.1.1-0-g03daa92"
+  "pdk-version": "2.4.0",
+  "template-url": "pdk-default#2.4.0",
+  "template-ref": "tags/2.4.0-0-gfa6b6d2"
 }
