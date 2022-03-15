@@ -240,8 +240,8 @@ class remi (
   $remi_php80_test_debuginfo_enabled     = 0,
   $remi_php80_test_debuginfo_includepkgs = undef,
   $remi_php80_test_debuginfo_exclude     = undef,
- 
-  $remi_php81_baseurl                    = absent,
+
+  $remi_php81_baseurl                    = absent
   $remi_php81_mirrorlist                 = "http://cdn.remirepo.net/enterprise/${::facts['os']['release']['major']}/php81/mirror",
   $remi_php81_enabled                    = 0,
   $remi_php81_includepkgs                = undef,
