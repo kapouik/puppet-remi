@@ -264,6 +264,30 @@ class remi (
   $remi_php81_test_debuginfo_enabled     = 0,
   $remi_php81_test_debuginfo_includepkgs = undef,
   $remi_php81_test_debuginfo_exclude     = undef,
+
+  $remi_php82_baseurl                    = absent,
+  $remi_php82_mirrorlist                 = "http://cdn.remirepo.net/enterprise/${::facts['os']['release']['major']}/php82/mirror",
+  $remi_php82_enabled                    = 0,
+  $remi_php82_includepkgs                = undef,
+  $remi_php82_exclude                    = undef,
+
+  $remi_php82_debuginfo_baseurl          = "http://rpms.remirepo.net/enterprise/${::facts['os']['release']['major']}/debug-php82/\$basearch/",
+  $remi_php82_debuginfo_mirrorlist       = absent,
+  $remi_php82_debuginfo_enabled          = 0,
+  $remi_php82_debuginfo_includepkgs      = undef,
+  $remi_php82_debuginfo_exclude          = undef,
+
+  $remi_php82_test_baseurl               = absent,
+  $remi_php82_test_mirrorlist            = "http://cdn.remirepo.net/enterprise/${::facts['os']['release']['major']}/test82/mirror",
+  $remi_php82_test_enabled               = 0,
+  $remi_php82_test_includepkgs           = undef,
+  $remi_php82_test_exclude               = undef,
+
+  $remi_php82_test_debuginfo_baseurl     = "http://rpms.remirepo.net/enterprise/${::facts['os']['release']['major']}/debug-test82/\$basearch/",
+  $remi_php82_test_debuginfo_mirrorlist  = absent,
+  $remi_php82_test_debuginfo_enabled     = 0,
+  $remi_php82_test_debuginfo_includepkgs = undef,
+  $remi_php82_test_debuginfo_exclude     = undef,
 ){
 
   if $use_epel {
@@ -633,6 +657,38 @@ class remi (
           enabled     => $remi_php81_test_debuginfo_enabled,
           includepkgs => $remi_php81_test_debuginfo_includepkgs,
           exclude     => $remi_php81_test_debuginfo_exclude;
+
+        'remi-php82':
+          descr       => "Remi's PHP 8.1 RPM repository for Enterprise Linux ${osreleasemaj} - \$basearch",
+          baseurl     => $remi_php82_baseurl,
+          mirrorlist  => $remi_php82_mirrorlist,
+          enabled     => $remi_php82_enabled,
+          includepkgs => $remi_php82_includepkgs,
+          exclude     => $remi_php82_exclude;
+
+        'remi-php82-debuginfo':
+          descr       => "Remi's PHP 8.1 RPM repository for Enterprise Linux ${osreleasemaj} - \$basearch - debuginfo",
+          baseurl     => $remi_php82_debuginfo_baseurl,
+          mirrorlist  => $remi_php82_debuginfo_mirrorlist,
+          enabled     => $remi_php82_debuginfo_enabled,
+          includepkgs => $remi_php82_debuginfo_includepkgs,
+          exclude     => $remi_php82_debuginfo_exclude;
+
+        'remi-php82-test':
+          descr       => "Remi's PHP 8.1 test RPM repository for Enterprise Linux ${osreleasemaj} - \$basearch",
+          baseurl     => $remi_php82_test_baseurl,
+          mirrorlist  => $remi_php82_test_mirrorlist,
+          enabled     => $remi_php82_test_enabled,
+          includepkgs => $remi_php82_test_includepkgs,
+          exclude     => $remi_php82_test_exclude;
+
+        'remi-php82-test-debuginfo':
+          descr       => "Remi's PHP 8.1 test RPM repository for Enterprise Linux ${osreleasemaj} - \$basearch - debuginfo",
+          baseurl     => $remi_php82_test_debuginfo_baseurl,
+          mirrorlist  => $remi_php82_test_debuginfo_mirrorlist,
+          enabled     => $remi_php82_test_debuginfo_enabled,
+          includepkgs => $remi_php82_test_debuginfo_includepkgs,
+          exclude     => $remi_php82_test_debuginfo_exclude;
       }
     }
   } else {
