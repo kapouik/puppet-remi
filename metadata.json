@@ -1,6 +1,6 @@
 {
   "name": "kapouik-remi",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "author": "kapouik",
   "summary": "Configure the remi repository and import the GPG keys.",
   "license": "MIT",

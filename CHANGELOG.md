@@ -1,4 +1,9 @@
 # Changelog
+## [v2.1.0](https://github.com/kapouik/puppet-remi/compare/v2.1.0...v2.2.0) (2022-10-28)
+
+* Add support for php 8.2
+* Update pdk to 2.5.0
+
 ## [v2.1.0](https://github.com/kapouik/puppet-remi/compare/v2.0.0...v2.1.0) (2022-03-15)
 
 * Add support for php 8.1

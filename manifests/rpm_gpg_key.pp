@@ -16,7 +16,7 @@
 #
 class remi::rpm_gpg_key (
   $ensure = present,
-){
+) {
   $source = $::facts['os']['release']['major'] ? {
     '7' => 'RPM-GPG-KEY-remi',
     '8' => 'RPM-GPG-KEY-remi.el8',
@@ -36,5 +36,4 @@ class remi::rpm_gpg_key (
     path    => ['/bin', '/usr/bin'],
     unless  => "rpm -q gpg-pubkey-$(gpg --throw-keyids /etc/pki/rpm-gpg/${source} | grep pub | cut -c 12-19 | tr '[A-Z]' '[a-z]')",
   }
-
 }

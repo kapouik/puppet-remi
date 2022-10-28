@@ -288,8 +288,7 @@ class remi (
   $remi_php82_test_debuginfo_enabled     = 0,
   $remi_php82_test_debuginfo_includepkgs = undef,
   $remi_php82_test_debuginfo_exclude     = undef,
-){
-
+) {
   if $use_epel {
     require epel
   }
@@ -694,5 +693,4 @@ class remi (
   } else {
     notice("This remi module does not support ${::facts['os']['name']}.")
   }
-
 }
