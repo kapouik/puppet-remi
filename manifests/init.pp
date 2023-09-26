@@ -1142,6 +1142,7 @@ class remi (
     $gpgkey = $osreleasemaj ? {
       '7' => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi',
       '8' => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el8',
+      '9' => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9',
     }
 
     yumrepo {
