@@ -54,7 +54,7 @@ remi::remi_php74_enabled: 1
 
 #### Public Classes
 
-- [`remi`](#remi):  Configure the remi repository and import the GPG keys.
+- `remi`:  Configure the remi repository and import the GPG keys.
 
 #### Private Classes
 

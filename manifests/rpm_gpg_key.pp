@@ -15,7 +15,7 @@
 # The path to the RPM-GPG-KEY-remi file to manage. Must be an absolute path.
 #
 class remi::rpm_gpg_key (
-  $ensure = present,
+  String[1] $ensure = present,
 ) {
   $source = $::facts['os']['release']['major'] ? {
     '7' => 'RPM-GPG-KEY-remi',
