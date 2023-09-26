@@ -9,6 +9,7 @@ class remi::rpm_gpg_key (
   $source = $::facts['os']['release']['major'] ? {
     '7' => 'RPM-GPG-KEY-remi',
     '8' => 'RPM-GPG-KEY-remi.el8',
+    '9' => 'RPM-GPG-KEY-remi.el9',
   }
 
   file { "/etc/pki/rpm-gpg/${source}":
