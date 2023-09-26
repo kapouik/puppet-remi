@@ -1,18 +1,7 @@
-# Class: remi::rpm_gpg_key
-# ===========================
+# @summary Import the RPM GPG key for the Remi
 #
-# Import the RPM GPG key for the Remi.
-#
-# Parameters
-# ----------
-#
-# Document parameters here.
-#
-# * `ensure`
-# Whether the RPM-GPG-KEY-remi file should exist.
-#
-# * `path`
-# The path to the RPM-GPG-KEY-remi file to manage. Must be an absolute path.
+# @param ensure
+#   Ensure than the RPM GPG key are presents.
 #
 class remi::rpm_gpg_key (
   String[1] $ensure = present,

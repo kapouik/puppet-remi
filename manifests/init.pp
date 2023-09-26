@@ -1,23 +1,862 @@
-# Class: remi
-# ===========================
+# @summary Configure the remi repository and import the GPG keys.
 #
-# Configure the remi repository and import the GPG keys.
-#
-# Parameters
-# ----------
-#
-# * `ensure`
-# Whether Remi's repositories and the RPM-GPG-KEY-remi file should exist.
-#
-# Examples
-# --------
-#
-# @example
+# @example Enable remi-safe and remi-php71 repositories
 #    class { 'remi':
 #      remi_safe_enabled  => 1,
 #      remi_php71_enabled => 1,
 #    }
 #
+# @param ensure
+#   Ensure than repositories are presents.
+#
+# @param use_epel
+#   If true, require epel module.
+#
+# @param proxy
+#   Set a proxy address.
+#
+# @param proxy_password
+#   Set password for proxy.
+#
+# @param proxy_username
+#   Set username for proxy.
+#
+# @param remi_baseurl
+#   Set baseurl for remi repository. If set, remi_mirrorlist must be absent.
+#
+# @param remi_mirrorlist
+#   Set mirrorlist for remi repository. If set, remi_baseurl must be absent.
+#
+# @param remi_enabled
+#   Integer to enable remi repository.
+#
+# @param remi_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#
+# @param remi_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+#
+# @param remi_safe_baseurl
+#   Set baseurl for remi_safe repository. If set, remi_safe_mirrorlist must be absent.
+# 
+# @param remi_safe_mirrorlist
+#   Set mirrorlist for remi_safe repository. If set, remi_safe_baseurl must be absent.
+#
+# @param remi_safe_enabled
+#   Integer to enable remi_safe repository.
+# 
+# @param remi_safe_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+# 
+# @param remi_safe_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_modular_baseurl
+#   Set baseurl for remi_modular repository. If set, remi_modular_mirrorlist must be absent.
+# 
+# @param remi_modular_mirrorlist
+#   Set mirrorlist for remi_modular repository. If set, remi_modular_baseurl must be absent.
+#
+# @param remi_modular_enabled
+#   Integer to enable remi_modular repository.
+# 
+# @param remi_modular_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+# 
+# @param remi_modular_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_modular_test_baseurl
+#   Set baseurl for remi_modular_test repository. If set, remi_modular_test_mirrorlist must be absent.
+# 
+# @param remi_modular_test_mirrorlist
+#   Set mirrorlist for remi_modular_test repository. If set, remi_modular_test_baseurl must be absent.
+#
+# @param remi_modular_test_enabled
+#   Integer to enable remi_modular_test repository.
+# 
+# @param remi_modular_test_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+# 
+# @param remi_modular_test_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php54_baseurl
+#   Set baseurl for remi_php54 repository. If set, remi_php54_mirrorlist must be absent.
+#
+# @param remi_php54_mirrorlist
+#   Set mirrorlist for remi_php54 repository. If set, remi_php54_baseurl must be absent.
+#
+# @param remi_php54_enabled
+#   Integer to enable remi_php54 repository.
+#
+# @param remi_php54_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#
+# @param remi_php54_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+#
+# @param remi_php55_baseurl
+#   Set baseurl for remi_php55 repository. If set, remi_php55_mirrorlist must be absent.
+#
+# @param remi_php55_mirrorlist
+#   Set mirrorlist for remi_php55 repository. If set, remi_php55_baseurl must be absent.
+#
+# @param remi_php55_enabled
+#   Integer to enable remi_php55 repository.
+#
+# @param remi_php55_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#
+# @param remi_php55_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+#
+# @param remi_php56_baseurl
+#   Set baseurl for remi_php56 repository. If set, remi_php56_mirrorlist must be absent.
+#
+# @param remi_php56_mirrorlist
+#   Set mirrorlist for remi_php56 repository. If set, remi_php56_baseurl must be absent.
+#
+# @param remi_php56_enabled
+#   Integer to enable remi_php56 repository.
+#
+# @param remi_php56_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#
+# @param remi_php56_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+#
+# @param remi_test_baseurl
+#   Set baseurl for remi_test repository. If set, remi_test_mirrorlist must be absent.
+#
+# @param remi_test_mirrorlist
+#   Set mirrorlist for remi_test repository. If set, remi_test_baseurl must be absent.
+#
+# @param remi_test_enabled
+#   Integer to enable remi_test repository.
+#
+# @param remi_test_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#
+# @param remi_test_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+#
+# @param remi_debuginfo_baseurl
+#   Set baseurl for remi_debuginfo repository. If set, remi_debuginfo_mirrorlist must be absent.
+#
+# @param remi_debuginfo_mirrorlist
+#   Set mirrorlist for remi_debuginfo repository. If set, remi_debuginfo_baseurl must be absent.
+#
+# @param remi_debuginfo_enabled
+#   Integer to enable remi_debuginfo repository.
+#
+# @param remi_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#
+# @param remi_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+#
+# @param remi_php55_debuginfo_baseurl 
+#   Set baseurl for remi_php55_debuginfo repository. If set, remi_php55_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php55_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php55_debuginfo repository. If set, remi_php55_debuginfo_baseurl must be absent.
+#   
+# @param remi_php55_debuginfo_enabled
+#   Integer to enable remi_php55_debuginfo repository.
+#   
+# @param remi_php55_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php55_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php56_debuginfo_baseurl 
+#   Set baseurl for remi_php56_debuginfo repository. If set, remi_php56_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php56_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php56_debuginfo repository. If set, remi_php56_debuginfo_baseurl must be absent.
+#   
+# @param remi_php56_debuginfo_enabled
+#   Integer to enable remi_php56_debuginfo repository.
+#   
+# @param remi_php56_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php56_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_test_debuginfo_baseurl 
+#   Set baseurl for remi_test_debuginfo repository. If set, remi_test_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_test_debuginfo_mirrorlist
+#   Set mirrorlist for remi_test_debuginfo repository. If set, remi_test_debuginfo_baseurl must be absent.
+#   
+# @param remi_test_debuginfo_enabled
+#   Integer to enable remi_test_debuginfo repository.
+#   
+# @param remi_test_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_test_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php70_baseurl 
+#   Set baseurl for remi_php70 repository. If set, remi_php70_mirrorlist must be absent.
+# 
+# @param remi_php70_mirrorlist
+#   Set mirrorlist for remi_php70 repository. If set, remi_php70_baseurl must be absent.
+#   
+# @param remi_php70_enabled
+#   Integer to enable remi_php70 repository.
+#   
+# @param remi_php70_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php70_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php70_debuginfo_baseurl 
+#   Set baseurl for remi_php70_debuginfo repository. If set, remi_php70_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php70_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php70_debuginfo repository. If set, remi_php70_debuginfo_baseurl must be absent.
+#   
+# @param remi_php70_debuginfo_enabled
+#   Integer to enable remi_php70_debuginfo repository.
+#   
+# @param remi_php70_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php70_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php70_test_baseurl 
+#   Set baseurl for remi_php70_test repository. If set, remi_php70_test_mirrorlist must be absent.
+# 
+# @param remi_php70_test_mirrorlist
+#   Set mirrorlist for remi_php70_test repository. If set, remi_php70_test_baseurl must be absent.
+#   
+# @param remi_php70_test_enabled
+#   Integer to enable remi_php70_test repository.
+#   
+# @param remi_php70_test_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php70_test_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php70_test_debuginfo_baseurl 
+#   Set baseurl for remi_php70_test_debuginfo repository. If set, remi_php70_test_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php70_test_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php70_test_debuginfo repository. If set, remi_php70_test_debuginfo_baseurl must be absent.
+#   
+# @param remi_php70_test_debuginfo_enabled
+#   Integer to enable remi_php70_test_debuginfo repository.
+#   
+# @param remi_php70_test_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php70_test_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php71_baseurl 
+#   Set baseurl for remi_php71 repository. If set, remi_php71_mirrorlist must be absent.
+# 
+# @param remi_php71_mirrorlist
+#   Set mirrorlist for remi_php71 repository. If set, remi_php71_baseurl must be absent.
+#   
+# @param remi_php71_enabled
+#   Integer to enable remi_php71 repository.
+#   
+# @param remi_php71_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php71_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php71_debuginfo_baseurl 
+#   Set baseurl for remi_php71_debuginfo repository. If set, remi_php71_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php71_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php71_debuginfo repository. If set, remi_php71_debuginfo_baseurl must be absent.
+#   
+# @param remi_php71_debuginfo_enabled
+#   Integer to enable remi_php71_debuginfo repository.
+#   
+# @param remi_php71_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php71_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php71_test_baseurl 
+#   Set baseurl for remi_php71_test repository. If set, remi_php71_test_mirrorlist must be absent.
+# 
+# @param remi_php71_test_mirrorlist
+#   Set mirrorlist for remi_php71_test repository. If set, remi_php71_test_baseurl must be absent.
+#   
+# @param remi_php71_test_enabled
+#   Integer to enable remi_php71_test repository.
+#   
+# @param remi_php71_test_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php71_test_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php71_test_debuginfo_baseurl 
+#   Set baseurl for remi_php71_test_debuginfo repository. If set, remi_php71_test_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php71_test_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php71_test_debuginfo repository. If set, remi_php71_test_debuginfo_baseurl must be absent.
+#   
+# @param remi_php71_test_debuginfo_enabled
+#   Integer to enable remi_php71_test_debuginfo repository.
+#   
+# @param remi_php71_test_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php71_test_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php72_baseurl 
+#   Set baseurl for remi_php72 repository. If set, remi_php72_mirrorlist must be absent.
+# 
+# @param remi_php72_mirrorlist
+#   Set mirrorlist for remi_php72 repository. If set, remi_php72_baseurl must be absent.
+#   
+# @param remi_php72_enabled
+#   Integer to enable remi_php72 repository.
+#   
+# @param remi_php72_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php72_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php72_debuginfo_baseurl 
+#   Set baseurl for remi_php72_debuginfo repository. If set, remi_php72_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php72_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php72_debuginfo repository. If set, remi_php72_debuginfo_baseurl must be absent.
+#   
+# @param remi_php72_debuginfo_enabled
+#   Integer to enable remi_php72_debuginfo repository.
+#   
+# @param remi_php72_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php72_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php72_test_baseurl 
+#   Set baseurl for remi_php72_test repository. If set, remi_php72_test_mirrorlist must be absent.
+# 
+# @param remi_php72_test_mirrorlist
+#   Set mirrorlist for remi_php72_test repository. If set, remi_php72_test_baseurl must be absent.
+#   
+# @param remi_php72_test_enabled
+#   Integer to enable remi_php72_test repository.
+#   
+# @param remi_php72_test_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php72_test_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php72_test_debuginfo_baseurl 
+#   Set baseurl for remi_php72_test_debuginfo repository. If set, remi_php72_test_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php72_test_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php72_test_debuginfo repository. If set, remi_php72_test_debuginfo_baseurl must be absent.
+#   
+# @param remi_php72_test_debuginfo_enabled
+#   Integer to enable remi_php72_test_debuginfo repository.
+#   
+# @param remi_php72_test_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php72_test_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php73_baseurl 
+#   Set baseurl for remi_php73 repository. If set, remi_php73_mirrorlist must be absent.
+# 
+# @param remi_php73_mirrorlist
+#   Set mirrorlist for remi_php73 repository. If set, remi_php73_baseurl must be absent.
+#   
+# @param remi_php73_enabled
+#   Integer to enable remi_php73 repository.
+#   
+# @param remi_php73_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php73_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php73_debuginfo_baseurl 
+#   Set baseurl for remi_php73_debuginfo repository. If set, remi_php73_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php73_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php73_debuginfo repository. If set, remi_php73_debuginfo_baseurl must be absent.
+#   
+# @param remi_php73_debuginfo_enabled
+#   Integer to enable remi_php73_debuginfo repository.
+#   
+# @param remi_php73_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php73_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php73_test_baseurl 
+#   Set baseurl for remi_php73_test repository. If set, remi_php73_test_mirrorlist must be absent.
+# 
+# @param remi_php73_test_mirrorlist
+#   Set mirrorlist for remi_php73_test repository. If set, remi_php73_test_baseurl must be absent.
+#   
+# @param remi_php73_test_enabled
+#   Integer to enable remi_php73_test repository.
+#   
+# @param remi_php73_test_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php73_test_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php73_test_debuginfo_baseurl 
+#   Set baseurl for remi_php73_test_debuginfo repository. If set, remi_php73_test_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php73_test_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php73_test_debuginfo repository. If set, remi_php73_test_debuginfo_baseurl must be absent.
+#   
+# @param remi_php73_test_debuginfo_enabled
+#   Integer to enable remi_php73_test_debuginfo repository.
+#   
+# @param remi_php73_test_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php73_test_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php74_baseurl 
+#   Set baseurl for remi_php74 repository. If set, remi_php74_mirrorlist must be absent.
+# 
+# @param remi_php74_mirrorlist
+#   Set mirrorlist for remi_php74 repository. If set, remi_php74_baseurl must be absent.
+#   
+# @param remi_php74_enabled
+#   Integer to enable remi_php74 repository.
+#   
+# @param remi_php74_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php74_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php74_debuginfo_baseurl 
+#   Set baseurl for remi_php74_debuginfo repository. If set, remi_php74_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php74_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php74_debuginfo repository. If set, remi_php74_debuginfo_baseurl must be absent.
+#   
+# @param remi_php74_debuginfo_enabled
+#   Integer to enable remi_php74_debuginfo repository.
+#   
+# @param remi_php74_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php74_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php74_test_baseurl 
+#   Set baseurl for remi_php74_test repository. If set, remi_php74_test_mirrorlist must be absent.
+# 
+# @param remi_php74_test_mirrorlist
+#   Set mirrorlist for remi_php74_test repository. If set, remi_php74_test_baseurl must be absent.
+#   
+# @param remi_php74_test_enabled
+#   Integer to enable remi_php74_test repository.
+#   
+# @param remi_php74_test_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php74_test_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php74_test_debuginfo_baseurl 
+#   Set baseurl for remi_php74_test_debuginfo repository. If set, remi_php74_test_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php74_test_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php74_test_debuginfo repository. If set, remi_php74_test_debuginfo_baseurl must be absent.
+#   
+# @param remi_php74_test_debuginfo_enabled
+#   Integer to enable remi_php74_test_debuginfo repository.
+#   
+# @param remi_php74_test_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php74_test_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php80_baseurl 
+#   Set baseurl for remi_php80 repository. If set, remi_php80_mirrorlist must be absent.
+# 
+# @param remi_php80_mirrorlist
+#   Set mirrorlist for remi_php80 repository. If set, remi_php80_baseurl must be absent.
+#   
+# @param remi_php80_enabled
+#   Integer to enable remi_php80 repository.
+#   
+# @param remi_php80_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php80_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php80_debuginfo_baseurl 
+#   Set baseurl for remi_php80_debuginfo repository. If set, remi_php80_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php80_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php80_debuginfo repository. If set, remi_php80_debuginfo_baseurl must be absent.
+#   
+# @param remi_php80_debuginfo_enabled
+#   Integer to enable remi_php80_debuginfo repository.
+#   
+# @param remi_php80_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php80_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php80_test_baseurl 
+#   Set baseurl for remi_php80_test repository. If set, remi_php80_test_mirrorlist must be absent.
+# 
+# @param remi_php80_test_mirrorlist
+#   Set mirrorlist for remi_php80_test repository. If set, remi_php80_test_baseurl must be absent.
+#   
+# @param remi_php80_test_enabled
+#   Integer to enable remi_php80_test repository.
+#   
+# @param remi_php80_test_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php80_test_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php80_test_debuginfo_baseurl 
+#   Set baseurl for remi_php80_test_debuginfo repository. If set, remi_php80_test_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php80_test_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php80_test_debuginfo repository. If set, remi_php80_test_debuginfo_baseurl must be absent.
+#   
+# @param remi_php80_test_debuginfo_enabled
+#   Integer to enable remi_php80_test_debuginfo repository.
+#   
+# @param remi_php80_test_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php80_test_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php81_baseurl 
+#   Set baseurl for remi_php81 repository. If set, remi_php81_mirrorlist must be absent.
+# 
+# @param remi_php81_mirrorlist
+#   Set mirrorlist for remi_php81 repository. If set, remi_php81_baseurl must be absent.
+#   
+# @param remi_php81_enabled
+#   Integer to enable remi_php81 repository.
+#   
+# @param remi_php81_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php81_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php81_debuginfo_baseurl 
+#   Set baseurl for remi_php81_debuginfo repository. If set, remi_php81_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php81_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php81_debuginfo repository. If set, remi_php81_debuginfo_baseurl must be absent.
+#   
+# @param remi_php81_debuginfo_enabled
+#   Integer to enable remi_php81_debuginfo repository.
+#   
+# @param remi_php81_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php81_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php81_test_baseurl 
+#   Set baseurl for remi_php81_test repository. If set, remi_php81_test_mirrorlist must be absent.
+# 
+# @param remi_php81_test_mirrorlist
+#   Set mirrorlist for remi_php81_test repository. If set, remi_php81_test_baseurl must be absent.
+#   
+# @param remi_php81_test_enabled
+#   Integer to enable remi_php81_test repository.
+#   
+# @param remi_php81_test_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php81_test_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php81_test_debuginfo_baseurl 
+#   Set baseurl for remi_php81_test_debuginfo repository. If set, remi_php81_test_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php81_test_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php81_test_debuginfo repository. If set, remi_php81_test_debuginfo_baseurl must be absent.
+#   
+# @param remi_php81_test_debuginfo_enabled
+#   Integer to enable remi_php81_test_debuginfo repository.
+#   
+# @param remi_php81_test_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php81_test_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php82_baseurl 
+#   Set baseurl for remi_php82 repository. If set, remi_php82_mirrorlist must be absent.
+# 
+# @param remi_php82_mirrorlist
+#   Set mirrorlist for remi_php82 repository. If set, remi_php82_baseurl must be absent.
+#   
+# @param remi_php82_enabled
+#   Integer to enable remi_php82 repository.
+#   
+# @param remi_php82_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php82_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php82_debuginfo_baseurl 
+#   Set baseurl for remi_php82_debuginfo repository. If set, remi_php82_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php82_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php82_debuginfo repository. If set, remi_php82_debuginfo_baseurl must be absent.
+#   
+# @param remi_php82_debuginfo_enabled
+#   Integer to enable remi_php82_debuginfo repository.
+#   
+# @param remi_php82_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php82_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php82_test_baseurl 
+#   Set baseurl for remi_php82_test repository. If set, remi_php82_test_mirrorlist must be absent.
+# 
+# @param remi_php82_test_mirrorlist
+#   Set mirrorlist for remi_php82_test repository. If set, remi_php82_test_baseurl must be absent.
+#   
+# @param remi_php82_test_enabled
+#   Integer to enable remi_php82_test repository.
+#   
+# @param remi_php82_test_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php82_test_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
+# @param remi_php82_test_debuginfo_baseurl 
+#   Set baseurl for remi_php82_test_debuginfo repository. If set, remi_php82_test_debuginfo_mirrorlist must be absent.
+# 
+# @param remi_php82_test_debuginfo_mirrorlist
+#   Set mirrorlist for remi_php82_test_debuginfo repository. If set, remi_php82_test_debuginfo_baseurl must be absent.
+#   
+# @param remi_php82_test_debuginfo_enabled
+#   Integer to enable remi_php82_test_debuginfo repository.
+#   
+# @param remi_php82_test_debuginfo_includepkgs
+#   The string of package names or shell globs separated by spaces to
+#   include. If this is set, only packages matching one of the package
+#   names or shell globs will be considered for update or install
+#   
+# @param remi_php82_test_debuginfo_exclude
+#   The string of package names or shell globs separated by spaces to exclude.
+#   Packages that match the package name given or shell globs will never be
+#   considered in updates or installs for this repo.
+# 
 class remi (
   String[1] $ensure                                = present,
   Boolean $use_epel                                = true,
