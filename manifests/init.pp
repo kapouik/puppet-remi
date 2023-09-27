@@ -1295,7 +1295,7 @@ class remi (
         exclude     => $remi_safe_exclude;
     }
 
-    if $osreleasemaj == '8' {
+    if $osreleasemaj =~ /8|9/ {
       yumrepo {
         default:
           gpgcheck       => 1,
