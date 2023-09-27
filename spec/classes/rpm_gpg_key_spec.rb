@@ -12,7 +12,7 @@ describe 'remi::rpm_gpg_key' do
         it { is_expected.to compile.with_all_deps }
         it { is_expected.to contain_class('remi::rpm_gpg_key') }
 
-        case facts[:operatingsystemmajrelease]
+        case facts[:os]['release']['major']
         when '7'
           it { is_expected.to contain_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-remi').with_ensure('present') }
           it { is_expected.to contain_exec('import-remi').with_command('rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi') }
@@ -33,7 +33,7 @@ describe 'remi::rpm_gpg_key' do
 
         it { is_expected.to compile }
 
-        case facts[:operatingsystemmajrelease]
+        case facts[:os]['release']['major']
         when '7'
           it { is_expected.to contain_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-remi').with_ensure('absent') }
 
