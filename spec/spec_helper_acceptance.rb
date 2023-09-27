@@ -14,7 +14,7 @@ RSpec.configure do |c|
     # Install dependencies
     hosts.each do |host|
       on(host, puppet('module', 'install', 'puppetlabs-stdlib'))
-      on(host, puppet('module', 'install', 'stahnma-epel'))
+      on(host, puppet('module', 'install', 'puppet-epel'))
       on(host, puppet('module', 'install', 'puppetlabs-yumrepo_core'))
     end
   end

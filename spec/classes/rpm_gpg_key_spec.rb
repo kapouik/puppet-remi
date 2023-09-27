@@ -21,6 +21,10 @@ describe 'remi::rpm_gpg_key' do
           it { is_expected.to contain_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el8').with_ensure('present') }
           it { is_expected.to contain_exec('import-remi').with_command('rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el8') }
 
+        when '9'
+          it { is_expected.to contain_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9').with_ensure('present') }
+          it { is_expected.to contain_exec('import-remi').with_command('rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9') }
+
         end
       end
 
@@ -35,6 +39,9 @@ describe 'remi::rpm_gpg_key' do
 
         when '8'
           it { is_expected.to contain_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el8').with_ensure('absent') }
+
+        when '9'
+          it { is_expected.to contain_file('/etc/pki/rpm-gpg/RPM-GPG-KEY-remi.el9').with_ensure('absent') }
 
         end
       end
