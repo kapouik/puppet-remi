@@ -1217,12 +1217,12 @@ class remi (
   Optional[String] $remi_php83_debuginfo_exclude          = undef,
 
   String[1] $remi_php83_test_baseurl                      = absent,
-  String[1] $remi_php83_test_mirrorlist                   = "http://cdn.remirepo.net/enterprise/${facts['os']['release']['major']}/test82/mirror",
+  String[1] $remi_php83_test_mirrorlist                   = "http://cdn.remirepo.net/enterprise/${facts['os']['release']['major']}/test83/mirror",
   Integer $remi_php83_test_enabled                        = 0,
   Optional[String] $remi_php83_test_includepkgs           = undef,
   Optional[String] $remi_php83_test_exclude               = undef,
 
-  String[1] $remi_php83_test_debuginfo_baseurl            = "http://rpms.remirepo.net/enterprise/${facts['os']['release']['major']}/debug-test82/\$basearch/",
+  String[1] $remi_php83_test_debuginfo_baseurl            = "http://rpms.remirepo.net/enterprise/${facts['os']['release']['major']}/debug-test83/\$basearch/",
   String[1] $remi_php83_test_debuginfo_mirrorlist         = absent,
   Integer $remi_php83_test_debuginfo_enabled              = 0,
   Optional[String] $remi_php83_test_debuginfo_includepkgs = undef,
